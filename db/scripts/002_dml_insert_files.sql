@@ -1,0 +1,9 @@
+INSERT INTO files(name, path) VALUES('avatar.jpg', 'files\avatar.jpg');
+INSERT INTO files(name, path) VALUES('back_to_the_future.jpg', 'files\back_to_the_future.jpg');
+INSERT INTO files(name, path) VALUES('dumb_and_dumber.jpg', 'files\dumb_and_dumber.jpg');
+INSERT INTO files(name, path) VALUES('interstellar.jpg', 'files\interstellar.jpg');
+INSERT INTO files(name, path) VALUES('lion_king.jpg', 'files\lion_king.jpg');
+INSERT INTO files(name, path) VALUES('lone_ranger.jpg', 'files\lone_ranger.jpg');
+INSERT INTO files(name, path) VALUES('lorax.jpg', 'files\lorax.jpg');
+INSERT INTO files(name, path) VALUES('oblivion.jpg', 'files\oblivion.jpg');
+INSERT INTO files(name, path) VALUES('paul.jpg', 'files\paul.jpg');
