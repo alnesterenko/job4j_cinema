@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+<div th:include="fragments/navigation :: navigation"></div>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название фильма</th>
+                <th scope="col">Кинозал</th>
+                <th scope="col">Начало</th>
+                <th scope="col">Завершение</th>
+                <th scope="col">Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr th:each="candidate: ${candidates}">
+                <td th:text="${candidate.id}" />
+                <td>
+                    <a th:text="${candidate.name}"
+                       th:href="@{/candidates/{candidateId}(candidateId=${candidate.id})}">
+                    </a>
+                </td>
+                &lt;!&ndash; Чтобы дата выводилась в "красивом" формате нужно добавить ещё одни скобки &ndash;&gt;
+                <td th:text="${{candidate.creationDate}}" />
+            </tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:include="fragments/footer :: footer"></div>
+</body>
+</html>
