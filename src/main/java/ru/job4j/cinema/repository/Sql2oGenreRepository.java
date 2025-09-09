@@ -1,13 +1,14 @@
 package ru.job4j.cinema.repository;
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Genre;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
+@ThreadSafe
 @Repository
 public class Sql2oGenreRepository implements GenreRepository {
 
