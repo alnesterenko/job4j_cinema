@@ -9,5 +9,5 @@ public interface GenreRepository {
 
     Optional<Genre> findById(int id);
 
-    Collection<Genre> fidAll();
+    Collection<Genre> findAll();
 }

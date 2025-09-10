@@ -13,9 +13,11 @@ public interface TicketRepository {
 
     Optional<Ticket> findById(int id);
 
-    Optional<Ticket> findByFilmSessionAndRowNumberAndPlaceNumber(FilmSession filmSession, int rowNumber, int placeNumber);
+    Optional<Ticket> findByFilmSessionAndRowNumberAndPlaceNumber(int sessionId, int rowNumber, int placeNumber);
 
-    Collection<Ticket> findByUserId(User user);
+    Collection<Ticket> findByUserId(int userId);
 
-    Collection<Ticket> findByFilmSession(FilmSession filmSession);
+    Collection<Ticket> findByFilmSession(int sessionId);
+
+    Collection<Ticket> findAll();
 }
