@@ -103,4 +103,14 @@ public class Sql2oTicketRepository implements TicketRepository {
                     .executeAndFetch(Ticket.class);
         }
     }
+
+    @Override
+    public boolean deleteById(int id) {
+        try (var connection = sql2o.open()) {
+            var query = connection.createQuery("DELETE FROM tickets WHERE id = :id");
+            query.addParameter("id", id);
+            /* Убеждаемся, что удаление затронуло хоть какие-то строки */
+            return (query.executeUpdate().getResult()) > 0;
+        }
+    }
 }
