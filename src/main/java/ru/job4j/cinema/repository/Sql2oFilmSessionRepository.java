@@ -6,6 +6,7 @@ import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.FilmSession;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @ThreadSafe
@@ -36,5 +37,18 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
             return query.setColumnMappings(FilmSession.COLUMN_MAPPING)
                     .executeAndFetch(FilmSession.class);
         }
+    }
+
+    @Override
+    public Collection<FilmSession> findByManyIds(List<Integer> ids) {
+        if (!ids.isEmpty()) {
+            try (var connection = sql2o.open()) {
+                String idList = String.join(",", ids.stream().map(String::valueOf).toArray(String[]::new));
+                var query = connection.createQuery("SELECT * FROM film_sessions WHERE id IN (" + idList + ")");
+                return query.setColumnMappings(FilmSession.COLUMN_MAPPING)
+                        .executeAndFetch(FilmSession.class);
+            }
+        }
+        return List.of();
     }
 }
