@@ -21,12 +21,6 @@ class SimpleFilmServiceTest {
 
     private static FilmService filmService;
 
-    private FilmRepository filmRepository;
-
-    private FileService fileService;
-
-    private GenreService genreService;
-
     private static Film firstTestFilm;
 
     private static Film secondTestFilm;
