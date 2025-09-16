@@ -7,9 +7,6 @@ import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.repository.TicketRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,27 +43,6 @@ public class SimpleTicketService implements TicketService {
     public Optional<TicketDto> findByFilmSessionAndRowNumberAndPlaceNumber(int sessionId, int rowNumber, int placeNumber) {
         Optional<Ticket> optionalTicket = ticketRepository.findByFilmSessionAndRowNumberAndPlaceNumber(sessionId, rowNumber, placeNumber);
         return createOptionalTicketDto(optionalTicket);
-    }
-
-    @Override
-    public Collection<TicketDto> findByUserId(int userId) {
-        List<TicketDto> resultListOfTicketsDto = new ArrayList<>();
-        Collection<Ticket> ticketsList = ticketRepository.findByUserId(userId);
-        Optional<User> optionalUser = userService.findUserById(userId);
-        Collection<FilmSessionDto> filmSessionDtoList = filmSessionService.findAllFilmSessions();
-/* TODO Доделать этот и два остальных метода.
-*   Sql2oFilmSessionRepository теперь выдаёт кинопоказы по переданному списку FilmSessionId. */
-        return resultListOfTicketsDto;
-    }
-
-    @Override
-    public Collection<TicketDto> findByFilmSessionId(int sessionId) {
-        return List.of();
-    }
-
-    @Override
-    public Collection<TicketDto> findAll() {
-        return List.of();
     }
 
     private TicketDto createTicketDto(Ticket ticket, User user, FilmSessionDto filmSessionDto) {
