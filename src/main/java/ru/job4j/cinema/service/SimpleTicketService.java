@@ -47,6 +47,8 @@ public class SimpleTicketService implements TicketService {
 
     private TicketDto createTicketDto(Ticket ticket, User user, FilmSessionDto filmSessionDto) {
         return new TicketDto(
+                /* Если он не бывает в БД, то зачем ему номер(id)? Нужен! Потому что у всего должен быть номер! ))) */
+                ticket.getId(),
                 ticket.getRowNumber(),
                 ticket.getPlaceNumber(),
                 user.getName(),

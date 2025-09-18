@@ -2,6 +2,7 @@ package ru.job4j.cinema.service;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.model.Hall;
@@ -95,10 +96,10 @@ class SimpleFilmSessionServiceTest {
     public void whenListOfFilesNotContainsWrongFile() {
         var filmSessionDtoList = new ArrayList<>(filmSessionService.findAllFilmSessions());
 
-        assertThat(filmSessionDtoList.contains(new FilmSession(
+        assertThat(filmSessionDtoList.contains(new FilmSessionDto(
                 3,
-                1,
-                1,
+                "Тестовый фильм2",
+                "Маленький зал",
                 LocalDateTime.of(2026, 10, 17, 18, 0, 0),
                 LocalDateTime.of(2026, 10, 17, 20, 0, 0),
                 150))).isFalse();
