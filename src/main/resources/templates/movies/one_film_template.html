@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="one_film">
+    <div class="row my-1">
+        <h1 th:text="${film.name}" ><!-- Название --></h1>
+    </div>
+    <div class="row my-2">
+        <img th:src="${film.pathToFile}" class="w-25" alt="No image"> <!-- Картинка -->
+    </div>
+    <div class="row">
+        <p><b>Описание: </b><span th:text="${film.description}" ></span><!-- Описание --></p>
+    </div>
+    <div class="row">
+        <p><b>Год: </b><span th:text="${film.year}" ></span><!-- Год --></p>
+    </div>
+    <div class="row">
+        <p><b>Жанр: </b><span th:text="${film.genre}" ></span><!-- Жанр --></p>
+    </div>
+    <div class="row">
+        <p><b>Ограничение по возврасту: </b><span th:text="${film.minimalAge}" ></span><!-- Минимальный возвраст --></p>
+    </div>
+    <div class="row">
+        <p><b>Продолжительность: </b><span th:text="${film.durationInMinutes}" ></span><!-- Продолжительность --></p>
+    </div>
+    <hr>
+</div>
+</html>

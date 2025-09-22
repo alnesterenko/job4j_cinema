@@ -3,9 +3,9 @@
 <head th:include="fragments/header :: header"></head>
 <body>
 <div th:include="fragments/navigation :: navigation"></div>
-<div class="container">
+<div class="container d-flex flex-column min-vh-100">
 
-    <!--<div th:each="movie: ${movies}" th:include="movies/one :: one"></div>-->
+    <div th:each="film: ${films}" th:include="movies/one_film_template :: one_film"></div>
 
 </div>
 <div th:include="fragments/footer :: footer"></div>
