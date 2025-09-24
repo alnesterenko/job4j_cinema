@@ -16,10 +16,10 @@ public class FilmDto {
 
     private String genre;
 
-    private String pathToFile;
+    private int fileId;
 
     @SuppressWarnings("checkstyle:ParameterNumber")
-    public FilmDto(int id, String name, String description, int year, int minimalAge, int durationInMinutes, String genre, String pathToFile) {
+    public FilmDto(int id, String name, String description, int year, int minimalAge, int durationInMinutes, String genre, int fileId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -27,17 +27,17 @@ public class FilmDto {
         this.minimalAge = minimalAge;
         this.durationInMinutes = durationInMinutes;
         this.genre = genre;
-        this.pathToFile = pathToFile;
+        this.fileId = fileId;
     }
 
-    public FilmDto(String name, String description, int year, int minimalAge, int durationInMinutes, String genre, String pathToFile) {
+    public FilmDto(String name, String description, int year, int minimalAge, int durationInMinutes, String genre, int fileId) {
         this.name = name;
         this.description = description;
         this.year = year;
         this.minimalAge = minimalAge;
         this.durationInMinutes = durationInMinutes;
         this.genre = genre;
-        this.pathToFile = pathToFile;
+        this.fileId = fileId;
     }
 
     public FilmDto() {
@@ -99,11 +99,11 @@ public class FilmDto {
         this.genre = genre;
     }
 
-    public String getPathToFile() {
-        return pathToFile;
+    public int getFileId() {
+        return fileId;
     }
 
-    public void setPathToFile(String pathToFile) {
-        this.pathToFile = pathToFile;
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 }

@@ -2,10 +2,14 @@ package ru.job4j.cinema.service;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import ru.job4j.cinema.dto.FileDto;
 import ru.job4j.cinema.model.File;
 import ru.job4j.cinema.repository.FileRepository;
 import ru.job4j.cinema.repository.Sql2oFileRepository;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,13 +26,27 @@ class SimpleFileServiceTest {
 
     private static File secondTestFile;
 
+    private static FileDto firstTestFileDto;
+
+    private static FileDto secondTestFileDto;
+
     @BeforeAll
-    public static void initTestRepository() {
+    public static void initTestRepository() throws IOException {
         FileRepository mockFileRepository = mock(Sql2oFileRepository.class);
-        firstTestFile = new File(1, "Панда кунг-фу", "files/panda.jpg");
-        secondTestFile = new File(2, "Один маленький человек", "files/one_small_man.jpg");
+/* Создаём два временных файла */
+        firstTestFileDto = new FileDto("Панда кунг-фу", new byte[] {1, 2, 3});
+        Path firstTempFile = Files.createTempFile("files", "panda.jpg");
+        Files.write(firstTempFile, firstTestFileDto.getContent());
+        firstTestFile = new File(1, "Панда кунг-фу", firstTempFile.toAbsolutePath().toString());
+
+        secondTestFileDto = new FileDto("Один маленький человек", new byte[] {4, 5, 6});
+        Path secondTempFile = Files.createTempFile("files", "one_small_man.jpg");
+        Files.write(secondTempFile, secondTestFileDto.getContent());
+        secondTestFile = new File(2, "Один маленький человек", secondTempFile.toAbsolutePath().toString());
+
         when(mockFileRepository.findById(1)).thenReturn(Optional.of(firstTestFile));
         when(mockFileRepository.findById(2)).thenReturn(Optional.of(secondTestFile));
+        when(mockFileRepository.findById(3)).thenReturn(Optional.empty());
         when(mockFileRepository.findAll()).thenReturn(List.of(firstTestFile, secondTestFile));
 
         fileService = new SimpleFileService(mockFileRepository);
@@ -36,25 +54,31 @@ class SimpleFileServiceTest {
 
     @Test
     public void whenRequestOneFileThenGetSameFile() {
-        var optionalFirstFile = fileService.findFileById(1);
+        var optionalFirstFileDto = fileService.findFileById(1);
 
-        assertThat(optionalFirstFile.isPresent()).isTrue();
-        assertThat(optionalFirstFile.get()).usingRecursiveComparison().isEqualTo(firstTestFile);
+        assertThat(optionalFirstFileDto.isPresent()).isTrue();
+        assertThat(optionalFirstFileDto.get()).usingRecursiveComparison().isEqualTo(firstTestFileDto);
+    }
+
+    @Test
+    public void whenFileNotExistThenReturnEmptyOptional() {
+        var result = fileService.findFileById(3);
+        assertThat(result).isEmpty();
     }
 
     @Test
     public void whenRequestListOfFilesThenGetCorrectList() {
-        var fileList = new ArrayList<>(fileService.findAllFiles());
+        var fileDtoList = new ArrayList<>(fileService.findAllFiles());
 
-        assertThat(fileList.size()).isEqualTo(2);
-        assertThat(fileList.get(0)).usingRecursiveComparison().isEqualTo(firstTestFile);
-        assertThat(fileList.get(1)).usingRecursiveComparison().isEqualTo(secondTestFile);
+        assertThat(fileDtoList.size()).isEqualTo(2);
+        assertThat(fileDtoList.get(0)).usingRecursiveComparison().isEqualTo(firstTestFileDto);
+        assertThat(fileDtoList.get(1)).usingRecursiveComparison().isEqualTo(secondTestFileDto);
     }
 
     @Test
     public void whenListOfFilesNotContainsWrongFile() {
-        var fileList = new ArrayList<>(fileService.findAllFiles());
+        var fileDtoList = new ArrayList<>(fileService.findAllFiles());
 
-        assertThat(fileList.contains(new File(2, "Панда кунг-фу", "files/one_small_man.jpg"))).isFalse();
+        assertThat(fileDtoList.contains(new FileDto("Панда кунг-фу", new byte[] {2, 4, 6}))).isFalse();
     }
 }

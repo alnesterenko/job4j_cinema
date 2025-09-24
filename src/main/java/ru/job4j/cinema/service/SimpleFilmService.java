@@ -5,6 +5,7 @@ import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.File;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.Genre;
+import ru.job4j.cinema.repository.FileRepository;
 import ru.job4j.cinema.repository.FilmRepository;
 
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ public class SimpleFilmService implements FilmService {
 
     private final FilmRepository filmRepository;
 
-    private final FileService fileService;
+    private final FileRepository fileRepository;
 
     private final GenreService genreService;
 
-    public SimpleFilmService(FilmRepository sql2oFilmRepository, FileService simpleFileService, GenreService simpleGenreService) {
+    public SimpleFilmService(FilmRepository sql2oFilmRepository, FileRepository sql2oFileRepository, GenreService simpleGenreService) {
         this.filmRepository = sql2oFilmRepository;
-        this.fileService = simpleFileService;
+        this.fileRepository = sql2oFileRepository;
         this.genreService = simpleGenreService;
     }
 
@@ -34,7 +35,7 @@ public class SimpleFilmService implements FilmService {
         var filmOptional = filmRepository.findById(id);
         if (filmOptional.isPresent()) {
             var film = filmOptional.get();
-            var fileOptional = fileService.findFileById(film.getFileId());
+            var fileOptional = fileRepository.findById(film.getFileId());
             var genreOptional = genreService.findGenreById(film.getGenreId());
             if (fileOptional.isPresent() && genreOptional.isPresent()) {
                 var file = fileOptional.get();
@@ -50,7 +51,7 @@ public class SimpleFilmService implements FilmService {
     public Collection<FilmDto> findAllFilms() {
         List<FilmDto> filmDtoList = new ArrayList<>();
         List<Film> filmList = new ArrayList<>(filmRepository.findAll());
-        List<File> fileList = new ArrayList<>(fileService.findAllFiles());
+        List<File> fileList = new ArrayList<>(fileRepository.findAll());
         List<Genre> genreList = new ArrayList<>(genreService.findAllGenres());
         for (Film oneFilm : filmList) {
             /* Так как, в списках нумерация начинается с 0, а не с 1, как в БД, то приходится отнимать 1 */
@@ -71,6 +72,6 @@ public class SimpleFilmService implements FilmService {
                 film.getMinimalAge(),
                 film.getDurationInMinutes(),
                 genre.getName(),
-                file.getPath());
+                file.getId());
     }
 }

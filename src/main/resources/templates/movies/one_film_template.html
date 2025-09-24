@@ -5,7 +5,8 @@
         <h1 th:text="${film.name}" ><!-- Название --></h1>
     </div>
     <div class="row my-2">
-        <img th:src="${film.pathToFile}" class="w-25" alt="No image"> <!-- Картинка -->
+        <!-- Выводим картинку через FileController -->
+        <img th:src="@{/files/{fileId}(fileId=${film.fileId})}" class="w-25" alt="No image"> <!-- Картинка -->
     </div>
     <div class="row">
         <p><b>Описание: </b><span th:text="${film.description}" ></span><!-- Описание --></p>
