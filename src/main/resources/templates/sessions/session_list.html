@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header :: header"></head>
+<body>
+<div th:include="fragments/navigation :: navigation"></div>
+<div class="container">
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Название фильма</th>
+                <th scope="col">Кинозал</th>
+                <th scope="col">Начало</th>
+                <th scope="col">Завершение</th>
+                <th scope="col">Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="filmSession: ${filmSessions}"  title="Нажмите чтобы купить билет.">
+            <td><a th:text="${filmSession.id}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+                <td><a th:text="${filmSession.filmName}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+                <td><a th:text="${filmSession.hallName}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+                <td><a th:text="${{filmSession.startTime}}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+                <td><a th:text="${{filmSession.endTime}}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+                <td><a th:text="${filmSession.price}" th:href="@{/tickets/{filmSessionId}(filmSessionId=${filmSession.id})}"><div class="cell-content"></div></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:include="fragments/footer :: footer"></div>
+</body>
+</html>

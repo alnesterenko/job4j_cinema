@@ -1,0 +1,10 @@
+
+.table-hover tr:hover {
+    color: #007bff; /* Цвет текста при наведении */
+    cursor: pointer; /* Изменение вида курсора */
+}
+
+.cell-content {
+  display: block;
+  padding: 10px; /* отступ внутри ячейки */
+}
