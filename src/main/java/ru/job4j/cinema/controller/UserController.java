@@ -30,7 +30,7 @@ public class UserController {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "errors/404";
         }
-        return "redirect:/movies";
+        return "redirect:/users/login";
     }
 
     @GetMapping("/login")
@@ -47,6 +47,12 @@ public class UserController {
         }
         var session = request.getSession();
         session.setAttribute("user", userOptional.get());
+        /* Если пользователь перед тем как залогинится пытался купить билет,
+        * то перенаправяем его на страницу покупки билета на тот кинопоказ, который он выбрал. */
+        if (session.getAttribute("filmSessionId") != null) {
+            return "redirect:/tickets/" + session.getAttribute("filmSessionId");
+        }
+        /* Или просто пусть идёт смотрит список фильмов. */
         return "redirect:/movies";
     }
 
