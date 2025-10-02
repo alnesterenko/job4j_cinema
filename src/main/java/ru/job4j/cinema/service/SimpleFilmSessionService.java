@@ -71,6 +71,7 @@ public class SimpleFilmSessionService implements FilmSessionService {
         return new FilmSessionDto(
                 filmSession.getId(),
                 film.getName(),
+                hall.getId(),
                 hall.getName(),
                 filmSession.getStartTime(),
                 filmSession.getEndTime(),

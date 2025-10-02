@@ -99,6 +99,7 @@ class SimpleFilmSessionServiceTest {
         assertThat(filmSessionDtoList.contains(new FilmSessionDto(
                 3,
                 "Тестовый фильм2",
+                3,
                 "Маленький зал",
                 LocalDateTime.of(2026, 10, 17, 18, 0, 0),
                 LocalDateTime.of(2026, 10, 17, 20, 0, 0),

@@ -68,6 +68,7 @@ class SimpleTicketServiceTest {
         testFilmSessionDto = new FilmSessionDto(
                 1,
                 "Жил-был пёс",
+                1,
                 "Красный зал",
                 LocalDateTime.of(2026, 10, 17, 18, 0, 0),
                 LocalDateTime.of(2026, 10, 17, 20, 0, 0),

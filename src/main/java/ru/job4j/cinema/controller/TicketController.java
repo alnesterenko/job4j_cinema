@@ -16,32 +16,28 @@ public class TicketController {
 
     private final TicketService ticketService;
 
-    private final FilmSessionRepository filmSessionRepository;
-
     private final FilmSessionService filmSessionService;
 
     private final HallService hallService;
 
     public TicketController(
             TicketService simpleTicketService,
-            FilmSessionRepository sql2oFilmSessionRepository,
             FilmSessionService simpleFilmSessionService,
             HallService simpleHallService) {
         this.ticketService = simpleTicketService;
-        this.filmSessionRepository = sql2oFilmSessionRepository;
         this.filmSessionService = simpleFilmSessionService;
         this.hallService = simpleHallService;
     }
 
     @GetMapping("/{id}")
     public String getById(Model model, @PathVariable int id) {
-        var filmSessionOptional = filmSessionRepository.findById(id);
-        if (filmSessionOptional.isEmpty()) {
+        var filmSessionDtoOptional = filmSessionService.findFilmSessionById(id);
+        if (filmSessionDtoOptional.isEmpty()) {
             model.addAttribute("message", "Кинопоказ с указанным идентификатором не найден");
             return "errors/404";
         }
-        var filmSessionDto = filmSessionService.findFilmSessionById(id).get();
-        var hall = hallService.findHallById(filmSessionOptional.get().getHallsId()).get();
+        var filmSessionDto = filmSessionDtoOptional.get();
+        var hall = hallService.findHallById(filmSessionDto.getHallId()).get();
         model.addAttribute("filmSessionDto", filmSessionDto);
         model.addAttribute("hall", hall);
         return "tickets/buyticket";
