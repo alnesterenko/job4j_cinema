@@ -2,10 +2,8 @@ package ru.job4j.cinema.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.job4j.cinema.repository.FilmSessionRepository;
+import org.springframework.web.bind.annotation.*;
+import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.service.FilmSessionService;
 import ru.job4j.cinema.service.HallService;
 import ru.job4j.cinema.service.TicketService;
@@ -34,12 +32,29 @@ public class TicketController {
         var filmSessionDtoOptional = filmSessionService.findFilmSessionById(id);
         if (filmSessionDtoOptional.isEmpty()) {
             model.addAttribute("message", "Кинопоказ с указанным идентификатором не найден");
-            return "errors/404";
+            return "messages/404";
         }
         var filmSessionDto = filmSessionDtoOptional.get();
         var hall = hallService.findHallById(filmSessionDto.getHallId()).get();
         model.addAttribute("filmSessionDto", filmSessionDto);
         model.addAttribute("hall", hall);
+        model.addAttribute("ticket", new Ticket());
         return "tickets/buyticket";
+    }
+
+    @PostMapping("/buy")
+    public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
+        try {
+            var ticketDtoOptional = ticketService.saveTicket(ticket);
+            if (ticketDtoOptional.isPresent()) {
+                model.addAttribute("ticketDto", ticketDtoOptional.get());
+                return "messages/success";
+            }
+            model.addAttribute("message", "Что-то пошло не так. Попробуйте ещё раз.");
+            return "messages/404";
+        } catch (Exception e) {
+            model.addAttribute("message", "Не удалось купить билет!");
+            return "messages/404";
+        }
     }
 }

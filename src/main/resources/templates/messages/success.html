@@ -4,8 +4,34 @@
 <body>
 <div th:replace="fragments/navigation :: navigation"></div>
 <div class="container">
-    <h3 class="mt-3">Вы успешно приобрели билет на такое место ... В АДУ !</h3>
-    <p class="text-danger" th:text="${message}"></p>
+    <h3 class="mt-3">Вы успешно приобрели 1 билет!</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Номер билета</th>
+            <th scope="col">Название фильма</th>
+            <th scope="col">Кинозал</th>
+            <th scope="col">Ряд</th>
+            <th scope="col">Место</th>
+            <th scope="col">Начало</th>
+            <th scope="col">Завершение</th>
+            <th scope="col">Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${ticketDto.id}" />
+            <td th:text="${ticketDto.filmName}" />
+            <td th:text="${ticketDto.hallName}" />
+            <td th:text="${ticketDto.rowNumber}" />
+            <td th:text="${ticketDto.placeNumber}" />
+            <!-- Чтобы дата выводилась в "красивом" формате нужно добавить ещё одни скобки -->
+            <td th:text="${{ticketDto.startTime}}" />
+            <td th:text="${{ticketDto.endTime}}" />
+            <td th:text="${ticketDto.price}" />
+        </tr>
+        </tbody>
+    </table>
 </div>
 <footer th:include="fragments/footer :: footer"></footer>
 </body>

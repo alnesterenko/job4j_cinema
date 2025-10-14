@@ -97,4 +97,15 @@ public class Ticket {
     public int hashCode() {
         return Objects.hash(getSessionId(), getRowNumber(), getPlaceNumber());
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{"
+                + "id=" + id
+                + ", sessionId=" + sessionId
+                + ", rowNumber=" + rowNumber
+                + ", placeNumber=" + placeNumber
+                + ", userId=" + userId
+                + '}';
+    }
 }

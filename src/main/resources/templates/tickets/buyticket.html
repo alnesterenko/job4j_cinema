@@ -27,17 +27,21 @@
         </tbody>
     </table>
 
-    <form class="mt-3" th:action="@{/tickets}" method="post">
+    <form class="mt-3" th:action="@{/tickets/buy}" th:object="${ticket}" method="post">
 
+        <!--<input type="hidden" th:field="*{userId}" th:value="${user.id}">
+        <input type="hidden" th:field="*{sessionId}" th:value="${filmSessionDto.id}">-->
+        <input type="hidden"  name="userId" th:value="${user.id}">
+        <input type="hidden"  name="sessionId" th:value="${filmSessionDto.id}">
         <div class="mb-3">
             <label for="row"><b>Ряд</b></label>
-            <select class="form-control" id="row" name="rowId">
+            <select class="form-control" id="row" name="rowNumber">
                 <option th:each="count : ${#numbers.sequence(1, hall.rowCount)}" th:value="${count}" th:text="'ряд № ' + ${count}"></option>
             </select>
         </div>
         <div class="mb-3">
             <label for="place"><b>Место</b></label>
-            <select class="form-control" id="place" name="placeId">
+            <select class="form-control" id="place" name="placeNumber">
                 <option th:each="count : ${#numbers.sequence(1, hall.placeCount)}" th:value="${count}" th:text="'место № ' + ${count}"></option>
             </select>
         </div>
