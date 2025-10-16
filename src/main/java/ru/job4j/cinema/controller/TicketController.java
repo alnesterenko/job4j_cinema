@@ -38,23 +38,17 @@ public class TicketController {
         var hall = hallService.findHallById(filmSessionDto.getHallId()).get();
         model.addAttribute("filmSessionDto", filmSessionDto);
         model.addAttribute("hall", hall);
-        model.addAttribute("ticket", new Ticket());
         return "tickets/buyticket";
     }
 
     @PostMapping("/buy")
     public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
-        try {
-            var ticketDtoOptional = ticketService.saveTicket(ticket);
-            if (ticketDtoOptional.isPresent()) {
-                model.addAttribute("ticketDto", ticketDtoOptional.get());
-                return "messages/success";
-            }
-            model.addAttribute("message", "Что-то пошло не так. Попробуйте ещё раз.");
-            return "messages/404";
-        } catch (Exception e) {
-            model.addAttribute("message", "Не удалось купить билет!");
-            return "messages/404";
+        var ticketDtoOptional = ticketService.saveTicket(ticket);
+        if (ticketDtoOptional.isPresent()) {
+            model.addAttribute("ticketDto", ticketDtoOptional.get());
+            return "messages/success";
         }
+        model.addAttribute("message", "Что-то пошло не так. Попробуйте ещё раз.");
+        return "messages/404";
     }
 }

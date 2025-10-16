@@ -47,7 +47,7 @@ class FileControllerTest {
     }
 
     @Test
-    public void whenRequestFileGetByIdThenGetResponseEntityNotFound() throws Exception {
+    public void whenRequestFileGetByIdThenGetResponseEntityNotFound() {
         var responseEntity = fileController.getById(2);
 
         assertThat(responseEntity).isEqualTo(ResponseEntity.notFound().build());

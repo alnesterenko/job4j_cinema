@@ -25,6 +25,7 @@ class FilmControllerTest {
         filmController = new FilmController(filmService);
     }
 
+    @Test
     public void whenRequestAllMoviesPageThenGetPageWithAllMovies() {
         var testFilmDto1 = new FilmDto(
                 1,

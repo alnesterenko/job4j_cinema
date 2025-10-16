@@ -28,7 +28,7 @@ public class UserController {
         var savedUser = userService.saveUser(user);
         if (savedUser.isEmpty()) {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
-            return "errors/404";
+            return "messages/404";
         }
         return "redirect:/users/login";
     }
