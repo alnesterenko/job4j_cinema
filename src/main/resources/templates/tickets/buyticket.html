@@ -27,10 +27,11 @@
         </tbody>
     </table>
 
+    <!-- Место для вставки карты кинотеатра -->
+    <div th:replace="tickets/map/hall_map :: hall_map"></div>
+
     <form class="mt-3" th:action="@{/tickets/buy}" th:object="${ticket}" method="post">
 
-        <!--<input type="hidden" th:field="*{userId}" th:value="${user.id}">
-        <input type="hidden" th:field="*{sessionId}" th:value="${filmSessionDto.id}">-->
         <input type="hidden"  name="userId" th:value="${user.id}">
         <input type="hidden"  name="sessionId" th:value="${filmSessionDto.id}">
         <div class="mb-3">

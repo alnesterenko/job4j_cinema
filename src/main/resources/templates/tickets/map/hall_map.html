@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="hall_map">
+
+    <table class="table-bordered border-dark">
+       <tr th:each="countRow : ${#numbers.sequence(-1, hall.rowCount)}">
+           <td  style="background-color: blue;" th:if="${countRow == -1}" th:text="Экран" th:colspan="${hall.placeCount + 1}" class="fw-bold text-center"></td>
+           <td th:if="${countRow > -1}" th:each="countPlace : ${#numbers.sequence(0, hall.placeCount)}">
+               <p th:if="${countRow == 0}" th:text="${countPlace == 0} ? '&nbsp;' : 'место № ' + ${countPlace}"></p>
+               <p style="white-space: nowrap;" th:if="${countRow > 0}" th:text="${countPlace == 0} ? 'ряд № ' + ${countRow} : '&nbsp;'"></p>
+           </td>
+       </tr>
+    </table>
+</div>
+</body>
+</html>
