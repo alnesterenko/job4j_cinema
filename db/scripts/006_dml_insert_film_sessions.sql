@@ -1,22 +1,22 @@
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(1, 1, '2025-09-01 09:00:00', '2025-09-01 11:46:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(2, 1, '2025-09-01 12:00:00', '2025-09-01 13:56:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(3, 1, '2025-09-01 14:30:00', '2025-09-01 16:19:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(4, 1, '2025-09-01 17:00:00', '2025-09-01 20:05:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(8, 1, '2025-09-01 20:30:00', '2025-09-01 22:35:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(5, 2, '2025-09-01 09:00:00', '2025-09-01 11:00:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(6, 2, '2025-09-01 11:30:00', '2025-09-01 14:00:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(7, 2, '2025-09-01 14:30:00', '2025-09-01 16:05:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(9, 2, '2025-09-01 16:30:00', '2025-09-01 18:10:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(5, 2, '2025-09-01 19:00:00', '2025-09-01 20:58:00', 100);
-INSERT INTO film_sessions(film_id, halls_id, start_time, end_time, price)
-	VALUES(6, 2, '2025-09-01 21:30:00', '2025-09-01 23:00:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (1, 1, '2025-09-01 09:00:00', '2025-09-01 11:46:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (2, 1, '2025-09-01 12:00:00', '2025-09-01 13:56:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (3, 1, '2025-09-01 14:30:00', '2025-09-01 16:19:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (4, 1, '2025-09-01 17:00:00', '2025-09-01 20:05:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (8, 1, '2025-09-01 20:30:00', '2025-09-01 22:35:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (5, 2, '2025-09-01 09:00:00', '2025-09-01 11:00:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (6, 2, '2025-09-01 11:30:00', '2025-09-01 14:00:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (7, 2, '2025-09-01 14:30:00', '2025-09-01 16:05:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (9, 2, '2025-09-01 16:30:00', '2025-09-01 18:10:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (5, 2, '2025-09-01 19:00:00', '2025-09-01 20:58:00', 100);
+INSERT INTO film_sessions (film_id, halls_id, start_time, end_time, price)
+VALUES (6, 2, '2025-09-01 21:30:00', '2025-09-01 23:00:00', 100);

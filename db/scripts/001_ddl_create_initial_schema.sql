@@ -1,61 +1,61 @@
-create table files
+CREATE TABLE files
 (
-    id   serial primary key,
-    name varchar not null,
-    path varchar not null unique
+    id serial PRIMARY KEY,
+    name varchar NOT NULL,
+    path varchar NOT NULL UNIQUE
 );
 
-create table genres
+CREATE TABLE genres
 (
-    id   serial primary key,
-    name varchar unique not null
+    id serial PRIMARY KEY,
+    name varchar UNIQUE NOT NULL
 );
 
-create table films
+CREATE TABLE films
 (
-    id                  serial primary key,
-    name                varchar                    not null,
-    description         varchar                    not null,
-    "year"              int                        not null,
-    genre_id            int references genres (id) not null,
-    minimal_age         int                        not null,
-    duration_in_minutes int                        not null,
-    file_id             int references files (id)  not null
+    id serial PRIMARY KEY,
+    name varchar NOT NULL,
+    description varchar NOT NULL,
+    year int NOT NULL,
+    genre_id int REFERENCES genres (id) NOT NULL,
+    minimal_age int NOT NULL,
+    duration_in_minutes int NOT NULL,
+    file_id int REFERENCES files (id) NOT NULL
 );
 
-create table halls
+CREATE TABLE halls
 (
-    id          serial primary key,
-    name        varchar not null,
-    row_count   int     not null,
-    place_count int     not null,
-    description varchar not null
+    id serial PRIMARY KEY,
+    name varchar NOT NULL,
+    row_count int NOT NULL,
+    place_count int NOT NULL,
+    description varchar NOT NULL
 );
 
-create table film_sessions
+CREATE TABLE film_sessions
 (
-    id         serial primary key,
-    film_id    int references films (id) not null,
-    halls_id   int references halls (id) not null,
-    start_time timestamp                 not null,
-    end_time   timestamp                 not null,
-    price      int                       not null
+    id serial PRIMARY KEY,
+    film_id int REFERENCES films (id) NOT NULL,
+    halls_id int REFERENCES halls (id) NOT NULL,
+    start_time timestamp NOT NULL,
+    end_time timestamp NOT NULL,
+    price int NOT NULL
 );
 
-create table users
+CREATE TABLE users
 (
-    id        serial primary key,
-    full_name varchar        not null,
-    email     varchar unique not null,
-    password  varchar        not null
+    id serial PRIMARY KEY,
+    full_name varchar NOT NULL,
+    email varchar UNIQUE NOT NULL,
+    password varchar NOT NULL
 );
 
-create table tickets
+CREATE TABLE tickets
 (
-    id           serial primary key,
-    session_id   int references film_sessions (id) not null,
-    row_number   int                               not null,
-    place_number int                               not null,
-    user_id      int                               not null,
-    unique (session_id, row_number, place_number)
+    id serial PRIMARY KEY,
+    session_id int REFERENCES film_sessions (id) NOT NULL,
+    row_number int NOT NULL,
+    place_number int NOT NULL,
+    user_id int NOT NULL,
+    UNIQUE (session_id, row_number, place_number)
 );

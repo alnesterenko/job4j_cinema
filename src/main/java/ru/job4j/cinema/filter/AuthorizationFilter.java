@@ -10,10 +10,14 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Component
 @Order(1)
 public class AuthorizationFilter extends HttpFilter {
+
+    /* Решил использовать встроенный в JDK логер чтобы не "заморачиваться" с зависимостями и настройками */
+    private Logger logger = Logger.getLogger(AuthorizationFilter.class.getName());
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -55,7 +59,7 @@ public class AuthorizationFilter extends HttpFilter {
         try {
             filmSessionId = Integer.parseInt(partsOfUri[partsOfUri.length - 1]);
         } catch (NumberFormatException | NullPointerException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
         }
         if (filmSessionId > 0) {
             session.setAttribute("filmSessionId", filmSessionId);

@@ -47,13 +47,10 @@ public class UserController {
         }
         var session = request.getSession();
         session.setAttribute("user", userOptional.get());
-        /* Если пользователь перед тем как залогинится пытался купить билет,
-        * то перенаправяем его на страницу покупки билета на тот кинопоказ, который он выбрал. */
-        if (session.getAttribute("filmSessionId") != null) {
-            return "redirect:/tickets/" + session.getAttribute("filmSessionId");
+        if (session.getAttribute("filmSessionId") == null) {
+            return "redirect:/movies";
         }
-        /* Или просто пусть идёт смотрит список фильмов. */
-        return "redirect:/movies";
+        return "redirect:/tickets/" + session.getAttribute("filmSessionId");
     }
 
     @GetMapping("/logout")

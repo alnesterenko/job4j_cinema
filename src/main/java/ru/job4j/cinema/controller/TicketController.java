@@ -35,7 +35,12 @@ public class TicketController {
             return "messages/404";
         }
         var filmSessionDto = filmSessionDtoOptional.get();
-        var hall = hallService.findHallById(filmSessionDto.getHallId()).get();
+        var hallOptional = hallService.findHallById(filmSessionDto.getHallId());
+        if (hallOptional.isEmpty()) {
+            model.addAttribute("message", "Кинозал с указанным идентификатором не найден");
+            return "messages/404";
+        }
+        var hall = hallOptional.get();
         model.addAttribute("filmSessionDto", filmSessionDto);
         model.addAttribute("hall", hall);
         return "tickets/buyticket";
@@ -44,11 +49,11 @@ public class TicketController {
     @PostMapping("/buy")
     public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
         var ticketDtoOptional = ticketService.saveTicket(ticket);
-        if (ticketDtoOptional.isPresent()) {
-            model.addAttribute("ticketDto", ticketDtoOptional.get());
-            return "messages/success";
+        if (ticketDtoOptional.isEmpty()) {
+            model.addAttribute("message", "Что-то пошло не так. Попробуйте ещё раз.");
+            return "messages/404";
         }
-        model.addAttribute("message", "Что-то пошло не так. Попробуйте ещё раз.");
-        return "messages/404";
+        model.addAttribute("ticketDto", ticketDtoOptional.get());
+        return "messages/success";
     }
 }
