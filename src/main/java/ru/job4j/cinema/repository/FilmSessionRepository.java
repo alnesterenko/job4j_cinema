@@ -3,7 +3,6 @@ package ru.job4j.cinema.repository;
 import ru.job4j.cinema.model.FilmSession;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 public interface FilmSessionRepository {
@@ -12,5 +11,5 @@ public interface FilmSessionRepository {
 
     Collection<FilmSession> findAll();
 
-    Collection<FilmSession> findByManyIds(List<Integer> ids);
+    Collection<FilmSession> findByManyIds(int[] ids);
 }

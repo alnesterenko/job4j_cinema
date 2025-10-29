@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.FilmSession;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -40,10 +41,13 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
     }
 
     @Override
-    public Collection<FilmSession> findByManyIds(List<Integer> ids) {
-        if (!ids.isEmpty()) {
+    public Collection<FilmSession> findByManyIds(int[] ids) {
+        if (ids.length > 0) {
             try (var connection = sql2o.open()) {
-                String idList = String.join(",", ids.stream().map(String::valueOf).toArray(String[]::new));
+                String idList = String.join(",", Arrays.stream(ids)
+                        .filter(id -> id >= 1)
+                        .mapToObj(String::valueOf)
+                        .toArray(String[]::new));
                 var query = connection.createQuery("SELECT * FROM film_sessions WHERE id IN (" + idList + ")");
                 return query.setColumnMappings(FilmSession.COLUMN_MAPPING)
                         .executeAndFetch(FilmSession.class);

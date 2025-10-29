@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,22 +63,23 @@ class Sql2oFilmSessionRepositoryTest {
 
     @Test
     public void whenGetListOfFilmSessionNotInOrderThenSuccess() {
-        List<Integer> idsList = List.of(1, 3, 5);
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
-        assertThat(filmSessionList.size()).isEqualTo(idsList.size());
+        int[] idsArr = new int[] {1, 3, 5};
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
+        assertThat(filmSessionList.size()).isEqualTo(idsArr.length);
     }
 
     @Test
     public void whenGetListOfFilmSessionNotInOrderWithEmptyListOfIdsThenSuccess() {
-        List<Integer> idsList = List.of();
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
-        assertThat(filmSessionList.size()).isEqualTo(idsList.size());
+        int[] idsArr = new int[] {};
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
+        assertThat(filmSessionList.size()).isEqualTo(idsArr.length);
     }
 
     @Test
     public void whenGetListOfFilmSessionNotInOrderWithIncorrectIdThenSuccess() {
-        List<Integer> idsList = List.of(1, 3, 0);
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
-        assertThat(filmSessionList.size()).isEqualTo(idsList.size() - 1);
+        int[] idsArr = new int[] {1, 3, 0, -1};
+        int[] correctIdsArr = Arrays.stream(idsArr).filter(id -> id >= 1).toArray();
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
+        assertThat(filmSessionList.size()).isEqualTo(correctIdsArr.length);
     }
 }
