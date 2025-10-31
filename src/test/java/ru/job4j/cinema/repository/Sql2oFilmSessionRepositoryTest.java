@@ -3,9 +3,10 @@ package ru.job4j.cinema.repository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
+import ru.job4j.cinema.repository.filmsession.Sql2oFilmSessionRepository;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -61,25 +62,26 @@ class Sql2oFilmSessionRepositoryTest {
         assertThat(beforefirst.isPresent()).isFalse();
     }
 
+    /* Тестируем findByManyIds() */
     @Test
     public void whenGetListOfFilmSessionNotInOrderThenSuccess() {
-        int[] idsArr = new int[] {1, 3, 5};
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
-        assertThat(filmSessionList.size()).isEqualTo(idsArr.length);
+        var idsList = List.of(1, 3, 5);
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
+        assertThat(filmSessionList.size()).isEqualTo(idsList.size());
     }
 
     @Test
     public void whenGetListOfFilmSessionNotInOrderWithEmptyListOfIdsThenSuccess() {
-        int[] idsArr = new int[] {};
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
-        assertThat(filmSessionList.size()).isEqualTo(idsArr.length);
+        List<Integer> idsList = List.of();
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
+        assertThat(filmSessionList.size()).isEqualTo(idsList.size());
     }
 
     @Test
     public void whenGetListOfFilmSessionNotInOrderWithIncorrectIdThenSuccess() {
-        int[] idsArr = new int[] {1, 3, 0, -1};
-        int[] correctIdsArr = Arrays.stream(idsArr).filter(id -> id >= 1).toArray();
-        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsArr);
-        assertThat(filmSessionList.size()).isEqualTo(correctIdsArr.length);
+        var idsList = List.of(1, 3, 0, -1);
+        var correctIdsList = idsList.stream().filter(id -> id >= 1).toList();
+        var filmSessionList = sql2oFilmSessionRepository.findByManyIds(idsList);
+        assertThat(filmSessionList.size()).isEqualTo(correctIdsList.size());
     }
 }

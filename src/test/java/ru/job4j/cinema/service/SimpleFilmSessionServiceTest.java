@@ -6,10 +6,14 @@ import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.repository.FilmRepository;
-import ru.job4j.cinema.repository.FilmSessionRepository;
-import ru.job4j.cinema.repository.Sql2oFilmRepository;
-import ru.job4j.cinema.repository.Sql2oFilmSessionRepository;
+import ru.job4j.cinema.repository.film.FilmRepository;
+import ru.job4j.cinema.repository.filmsession.FilmSessionRepository;
+import ru.job4j.cinema.repository.film.Sql2oFilmRepository;
+import ru.job4j.cinema.repository.filmsession.Sql2oFilmSessionRepository;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
+import ru.job4j.cinema.service.filmsession.SimpleFilmSessionService;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.hall.SimpleHallService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.dto.FileDto;
 import ru.job4j.cinema.model.File;
-import ru.job4j.cinema.repository.FileRepository;
-import ru.job4j.cinema.repository.Sql2oFileRepository;
+import ru.job4j.cinema.repository.file.FileRepository;
+import ru.job4j.cinema.repository.file.Sql2oFileRepository;
+import ru.job4j.cinema.service.file.FileService;
+import ru.job4j.cinema.service.file.SimpleFileService;
 
 import java.io.IOException;
 import java.nio.file.Files;

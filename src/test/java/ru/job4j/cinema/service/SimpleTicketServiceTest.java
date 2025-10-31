@@ -6,8 +6,14 @@ import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.dto.TicketDto;
 import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.repository.Sql2oTicketRepository;
-import ru.job4j.cinema.repository.TicketRepository;
+import ru.job4j.cinema.repository.ticket.Sql2oTicketRepository;
+import ru.job4j.cinema.repository.ticket.TicketRepository;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
+import ru.job4j.cinema.service.filmsession.SimpleFilmSessionService;
+import ru.job4j.cinema.service.ticket.SimpleTicketService;
+import ru.job4j.cinema.service.ticket.TicketService;
+import ru.job4j.cinema.service.user.SimpleUserService;
+import ru.job4j.cinema.service.user.UserService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

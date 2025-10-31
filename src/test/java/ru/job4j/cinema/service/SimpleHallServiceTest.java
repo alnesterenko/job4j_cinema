@@ -3,8 +3,10 @@ package ru.job4j.cinema.service;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.repository.HallRepository;
-import ru.job4j.cinema.repository.Sql2oHallRepository;
+import ru.job4j.cinema.repository.hall.HallRepository;
+import ru.job4j.cinema.repository.hall.Sql2oHallRepository;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.hall.SimpleHallService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,9 +7,9 @@ import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.dto.TicketDto;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.service.FilmSessionService;
-import ru.job4j.cinema.service.HallService;
-import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

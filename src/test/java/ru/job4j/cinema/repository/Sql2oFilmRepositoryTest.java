@@ -3,6 +3,7 @@ package ru.job4j.cinema.repository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
+import ru.job4j.cinema.repository.film.Sql2oFilmRepository;
 
 import java.util.Collection;
 import java.util.Properties;

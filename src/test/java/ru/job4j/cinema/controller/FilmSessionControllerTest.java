@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.dto.FilmSessionDto;
-import ru.job4j.cinema.service.FilmSessionService;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;

@@ -3,8 +3,10 @@ package ru.job4j.cinema.service;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.Genre;
-import ru.job4j.cinema.repository.GenreRepository;
-import ru.job4j.cinema.repository.Sql2oGenreRepository;
+import ru.job4j.cinema.repository.genre.GenreRepository;
+import ru.job4j.cinema.repository.genre.Sql2oGenreRepository;
+import ru.job4j.cinema.service.genre.GenreService;
+import ru.job4j.cinema.service.genre.SimpleGenreService;
 
 import java.util.ArrayList;
 import java.util.List;
